@@ -17,6 +17,7 @@ public class CameraControls : MonoBehaviour
     {
         cameras[0].gameObject.SetActive(true);
         CamID = 0;
+        activeCamera = cameras[CamID];
 
         for(int i = 1; i < cameras.Length; i++)
         {

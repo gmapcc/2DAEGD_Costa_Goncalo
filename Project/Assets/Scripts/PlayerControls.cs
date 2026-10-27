@@ -111,6 +111,46 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Push"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ea2d570-0e26-4a28-a132-ec87499789e3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""ScareCrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""76556913-b8c9-453f-a219-c5e87f0c4af5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""b434ab64-14c9-4394-901f-63a2e13156f9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""FullReset"",
+                    ""type"": ""Button"",
+                    ""id"": ""c1656e58-c78f-4d86-b861-2c31559e1b14"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -201,6 +241,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""CycleCams"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7a5c1e7-9cf5-41b5-8838-6db794dffe61"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Push"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f5acef2-1038-426d-89c7-0c2792fb20ba"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScareCrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1cb6f90-ae55-47f3-bf32-44305cab73e8"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77147a61-4d7e-4225-8641-ac5d70beeac5"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FullReset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -211,6 +295,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_CycleCams = m_Movement.FindAction("CycleCams", throwIfNotFound: true);
+        m_Movement_Push = m_Movement.FindAction("Push", throwIfNotFound: true);
+        m_Movement_ScareCrow = m_Movement.FindAction("ScareCrow", throwIfNotFound: true);
+        m_Movement_Restart = m_Movement.FindAction("Restart", throwIfNotFound: true);
+        m_Movement_FullReset = m_Movement.FindAction("FullReset", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -293,6 +381,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_CycleCams;
+    private readonly InputAction m_Movement_Push;
+    private readonly InputAction m_Movement_ScareCrow;
+    private readonly InputAction m_Movement_Restart;
+    private readonly InputAction m_Movement_FullReset;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
     /// </summary>
@@ -312,6 +404,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Movement/CycleCams".
         /// </summary>
         public InputAction @CycleCams => m_Wrapper.m_Movement_CycleCams;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/Push".
+        /// </summary>
+        public InputAction @Push => m_Wrapper.m_Movement_Push;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/ScareCrow".
+        /// </summary>
+        public InputAction @ScareCrow => m_Wrapper.m_Movement_ScareCrow;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/Restart".
+        /// </summary>
+        public InputAction @Restart => m_Wrapper.m_Movement_Restart;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/FullReset".
+        /// </summary>
+        public InputAction @FullReset => m_Wrapper.m_Movement_FullReset;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -344,6 +452,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @CycleCams.started += instance.OnCycleCams;
             @CycleCams.performed += instance.OnCycleCams;
             @CycleCams.canceled += instance.OnCycleCams;
+            @Push.started += instance.OnPush;
+            @Push.performed += instance.OnPush;
+            @Push.canceled += instance.OnPush;
+            @ScareCrow.started += instance.OnScareCrow;
+            @ScareCrow.performed += instance.OnScareCrow;
+            @ScareCrow.canceled += instance.OnScareCrow;
+            @Restart.started += instance.OnRestart;
+            @Restart.performed += instance.OnRestart;
+            @Restart.canceled += instance.OnRestart;
+            @FullReset.started += instance.OnFullReset;
+            @FullReset.performed += instance.OnFullReset;
+            @FullReset.canceled += instance.OnFullReset;
         }
 
         /// <summary>
@@ -361,6 +481,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @CycleCams.started -= instance.OnCycleCams;
             @CycleCams.performed -= instance.OnCycleCams;
             @CycleCams.canceled -= instance.OnCycleCams;
+            @Push.started -= instance.OnPush;
+            @Push.performed -= instance.OnPush;
+            @Push.canceled -= instance.OnPush;
+            @ScareCrow.started -= instance.OnScareCrow;
+            @ScareCrow.performed -= instance.OnScareCrow;
+            @ScareCrow.canceled -= instance.OnScareCrow;
+            @Restart.started -= instance.OnRestart;
+            @Restart.performed -= instance.OnRestart;
+            @Restart.canceled -= instance.OnRestart;
+            @FullReset.started -= instance.OnFullReset;
+            @FullReset.performed -= instance.OnFullReset;
+            @FullReset.canceled -= instance.OnFullReset;
         }
 
         /// <summary>
@@ -415,5 +547,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCycleCams(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Push" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPush(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ScareCrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScareCrow(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Restart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRestart(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "FullReset" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFullReset(InputAction.CallbackContext context);
     }
 }

@@ -37,10 +37,11 @@ public class HideClosestWall : MonoBehaviour
             {
                 MeshRenderer wallRender = wall.GetComponent<MeshRenderer>();
 
-                if(wallRender != null && wallRender.enabled !=state)
+                if(wallRender != null && state == false)
                 {
-                    wallRender.enabled = state;
+                    wallRender.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
                 }
+                else wallRender.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
             }
         }
     }
